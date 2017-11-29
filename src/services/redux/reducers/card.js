@@ -1,8 +1,15 @@
-const cardReducer = (state={}, action) => {
+const initialState = {}
+const cardReducer = (state=initialState, action) => {
   switch(action.type) {
-    case 'CHANGE_CARD':
+
+    case 'CREATE_CARD':
+      return initialState
+      break
+
+    case 'UPDATE_CARD':
       return Object.assign({}, state, action.payload)
       break
+
     default:
       return state
   }
