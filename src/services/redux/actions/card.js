@@ -8,10 +8,12 @@ export function newCard() {
 }
 
 export function getCards() {
-  return {
+  const test = {
     type: 'FETCH_CARDS_COMPLETE',
     payload: JSON.parse(localStorage.cards || '[]'),
   }
+  console.log('est', test)
+  return test
 }
 
 export function createCard(card) {

@@ -1,7 +1,7 @@
 import {combineReducers, createStore} from 'redux'
-import {cardReducer, userReducer, cardsReducer} from './reducers'
+import {card, user, cards} from './reducers'
 
-const reducers = combineReducers({ cardReducer, userReducer, cardsReducer })
+const reducers = combineReducers({ card, user, cards })
 
 const store = createStore(reducers)
 

@@ -1,5 +1,5 @@
-import cardReducer from './card'
-import cardsReducer from './cards'
-import userReducer from './user'
+import card from './card'
+import cards from './cards'
+import user from './user'
 
-export { cardReducer, userReducer, cardsReducer }
+export { card, user, cards }
