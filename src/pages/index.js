@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import page from 'page'
-
 import Snap from './snap/snap.page'
 import Save from './save/save.page'
 

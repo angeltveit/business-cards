@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import store from '../../services/redux'
 import page from 'page'
 
 import './save.page.css';
 
+@connect((store)=> {
+  console.log(store)
+  return {
+    user: store.user,
+    card: store.card,
+  }
+})
 class Save extends Component {
   constructor(props) {
     super(props)
