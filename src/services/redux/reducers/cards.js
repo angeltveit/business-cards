@@ -2,7 +2,7 @@ const cardsReducer = (state=[], action) => {
   switch(action.type) {
 
     case 'FETCH_CARDS_COMPLETE':
-      return state.concat(action.payload)
+      return action.payload
       break
 
     case 'ADD_CARD':

@@ -1,3 +1,19 @@
 canvas {
   display: none;
 }
+.camera {
+  position: relative;
+  display: inline-block;
+}
+.button {
+  position: absolute;
+  z-index: 2;
+  bottom: 1em;
+  transform: translateX(-50%);
+  left: 50%;
+  border: 5px solid rgba(255,255,255,0.6);
+  border-radius: 50%;
+  height: 3em;
+  width: 3em;
+  cursor: pointer;
+}

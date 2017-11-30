@@ -1,4 +1,8 @@
-const initialState = {}
+import uuid from 'uuid'
+
+const initialState = {
+  id: uuid(),
+}
 const cardReducer = (state=initialState, action) => {
   switch(action.type) {
 

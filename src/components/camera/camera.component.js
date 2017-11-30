@@ -12,6 +12,9 @@ class Camera extends Component {
   componentDidMount() {
     this.init()
   }
+  componentWillUnmount() {
+    if(this.track) this.track.stop()
+  }
   init() {
     if(!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) return
     const config = {
@@ -20,6 +23,7 @@ class Camera extends Component {
     }
     navigator.mediaDevices.getUserMedia(config).then( stream => {
       this.track = stream.getTracks()[0]
+      if(!this.videoElement) return
       this.videoElement.src = window.URL.createObjectURL(stream)
       this.videoElement.play()
     })
@@ -34,7 +38,7 @@ class Camera extends Component {
   }
   render() {
     return (
-      <div className="Camera">
+      <div className="camera">
         <video
           id="video"
           width="640"
@@ -42,10 +46,11 @@ class Camera extends Component {
           autoplay
           ref= { e => this.videoElement = e }
         ></video>
-        <button
+        <div
+          className="button"
           id="snap"
           onClick={ () => this.capture() }
-        >Snap Photo</button>
+        ></div>
         <canvas
           id="canvas"
           width="640"

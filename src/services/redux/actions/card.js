@@ -1,22 +1,35 @@
+import uuid from 'uuid'
+
 export function newCard() {
   return {
     type: 'CREATE_CARD',
     payload: {
+      id: uuid(),
+      key: uuid(),
       image: null,
     }
   }
 }
 
 export function getCards() {
-  const test = {
+  return {
     type: 'FETCH_CARDS_COMPLETE',
-    payload: JSON.parse(localStorage.cards || '[]'),
+    payload: JSON.parse(localStorage.cards || '[]').map(e=> {
+      if(!e.id) e.id = uuid()
+      if(!e.key) e.key = uuid()
+      return e
+    }),
   }
-  console.log('est', test)
-  return test
 }
 
-export function createCard(card) {
+export function updateCard(card) {
+  return {
+    type: 'UPDATE_CARD',
+    payload: card,
+  }
+}
+
+export function saveCard(card) {
   const payload = JSON.parse(localStorage.cards || '[]')
   payload.push(card)
   localStorage.cards = JSON.stringify(payload)

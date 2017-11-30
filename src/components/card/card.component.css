@@ -1,0 +1,7 @@
+.card {
+  display: flex;
+  margin: 1em;
+}
+p {
+  margin-top: 0;
+}
