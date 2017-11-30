@@ -5,8 +5,11 @@ It will be useful at conferences or other venus where a rapid exchange of busine
 
 ## Run the project
 `yarn install`
+
 or
+
 `npm i`
+
 `npm start`
 
 ## Requirements
