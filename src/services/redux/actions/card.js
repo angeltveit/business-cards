@@ -5,7 +5,6 @@ export function newCard() {
     type: 'CREATE_CARD',
     payload: {
       id: uuid(),
-      key: uuid(),
       image: null,
     }
   }
@@ -16,7 +15,6 @@ export function getCards() {
     type: 'FETCH_CARDS_COMPLETE',
     payload: JSON.parse(localStorage.cards || '[]').map(e=> {
       if(!e.id) e.id = uuid()
-      if(!e.key) e.key = uuid()
       return e
     }),
   }

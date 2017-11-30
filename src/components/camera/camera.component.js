@@ -6,14 +6,15 @@ class Camera extends Component {
     super(props)
     console.log('props?', this.props)
   }
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
+  componentWillMount() {
+    this.tracks = []
   }
   componentDidMount() {
     this.init()
   }
   componentWillUnmount() {
-    if(this.track) this.track.stop()
+    console.log('has a track', this.tracks.length)
+    this.stop()
   }
   init() {
     if(!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) return
@@ -22,16 +23,22 @@ class Camera extends Component {
       audio: false,
     }
     navigator.mediaDevices.getUserMedia(config).then( stream => {
-      this.track = stream.getTracks()[0]
+      this.tracks.push(...stream.getTracks())
       if(!this.videoElement) return
       this.videoElement.src = window.URL.createObjectURL(stream)
       this.videoElement.play()
     })
   }
+  stop() {
+    this.tracks.forEach((t, i) => {
+      t.stop()
+      this.tracks.splice(i,1)
+    })
+  }
   capture() {
     const context = this.canvasElement.getContext('2d')
     context.drawImage(this.videoElement, 0, 0, 640, 480)
-    if(this.track) this.track.stop()
+    this.stop()
     this.canvasElement.toBlob( blob=> {
       this.props.setImage(URL.createObjectURL(blob))
     })
@@ -43,7 +50,7 @@ class Camera extends Component {
           id="video"
           width="640"
           height="480"
-          autoplay
+          autoPlay
           ref= { e => this.videoElement = e }
         ></video>
         <div
